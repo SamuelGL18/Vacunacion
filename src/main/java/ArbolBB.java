@@ -118,6 +118,7 @@ public class ArbolBB {
     public void eliminar(long dpi) {
         raiz = eliminarNodo(raiz, dpi);
     }
+
     private Nodo minimo(Nodo nodo) {
         while (nodo.izquierda != null) {
             nodo = nodo.izquierda;
