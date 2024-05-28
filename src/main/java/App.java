@@ -5,32 +5,60 @@ import java.awt.event.ActionListener;
 
 public class App {
     private JPanel panelPrincipal;
-    private JPanel panelNavegacion;
-    private JButton mostrarABBMenu;
-    private JButton mostrarAVLMenu;
-    private JPanel panelContenido;
+    private JButton ABBButton;
+    private JButton AVLButton;
+    private JPanel panelMenuPrincipal;
     private JPanel panelABB;
+    private JButton regresarABB;
+    private JButton cargarArchivoABB;
+    private JButton encriptarButton;
     private JPanel panelAVL;
+    private JButton regresarAVL;
     private JButton cargarArchivoButton;
-    private JButton cargarArchivoButton1;
+    private JButton button5;
+
 
     public App() {
-        mostrarABBMenu.addActionListener(new ActionListener() {
+        ABBButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelContenido.removeAll();
-                panelContenido.add(panelABB);
-                panelContenido.repaint();
-                panelContenido.revalidate();
+                panelPrincipal.removeAll();
+                panelPrincipal.add(panelABB);
+                panelPrincipal.repaint();
+                panelPrincipal.revalidate();
             }
         });
-        mostrarAVLMenu.addActionListener(new ActionListener() {
+        regresarABB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelContenido.removeAll();
-                panelContenido.add(panelAVL);
-                panelContenido.repaint();
-                panelContenido.revalidate();
+                panelPrincipal.removeAll();
+                panelPrincipal.add(panelMenuPrincipal);
+                panelPrincipal.repaint();
+                panelPrincipal.revalidate();
+            }
+        });
+        regresarAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelPrincipal.removeAll();
+                panelPrincipal.add(panelMenuPrincipal);
+                panelPrincipal.repaint();
+                panelPrincipal.revalidate();
+            }
+        });
+        AVLButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelPrincipal.removeAll();
+                panelPrincipal.add(panelAVL);
+                panelPrincipal.repaint();
+                panelPrincipal.revalidate();
+            }
+        });
+        cargarArchivoABB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
