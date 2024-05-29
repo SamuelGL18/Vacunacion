@@ -35,6 +35,14 @@ public class App {
     private JButton agregarButtonABB;
     private JTextField dpiAgregarABB;
     private JButton verArbolButtonABB;
+    private JButton eliminarABBButton;
+    private JButton actualizarABBButton;
+    private JPanel panelActualizarPersonaABB;
+    private JButton regresarActualizarABBButton;
+    private JTextField DPINuevoABB;
+    private JTextField nombreCambiadoABB;
+    private JButton actualizarPersonaABB;
+    private JTextField DPIAntiguoABB;
 
     // Modelo
     private File ArchivoSeleccionado;
@@ -178,6 +186,53 @@ public class App {
                 });
             }
         });
+        eliminarABBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionada = tablaNodosABB.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    String dpiBruto = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0); // Get DPI from column 0
+                    long dpi = Long.parseLong(dpiBruto);
+                    arbolBinario.eliminar(dpi);
+                    actualizarTabla();
+                } else {
+                    System.out.println("No row selected.");
+                }
+            }
+        });
+        actualizarABBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionada = tablaNodosABB.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    String dpi = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0); // Get DPI from column 0
+                    String nombre = (String) tablaNodosABB.getValueAt(filaSeleccionada, 1);
+                    DPINuevoABB.setText(dpi);
+                    nombreCambiadoABB.setText(nombre);
+                    DPIAntiguoABB.setText(dpi);
+                    actualizarTabla();
+                } else {
+                    System.out.println("No row selected.");
+                }
+                irA(panelActualizarPersonaABB);
+            }
+        });
+        regresarActualizarABBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelABB);
+            }
+        });
+        actualizarPersonaABB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                long dpiAntiguo = Long.parseLong(DPIAntiguoABB.getText());
+                long dpiNuevo = Long.parseLong(DPINuevoABB.getText());
+                String nombre = nombreCambiadoABB.getText();
+                arbolBinario.editar(dpiAntiguo, dpiNuevo, nombre);
+                actualizarTabla();
+            }
+        });
     }
 
     void actualizarTabla() {
@@ -208,18 +263,6 @@ public class App {
         cargarDatosTabla();
 
         tablaNodosABB = new JTable(model);
-
-        // Agregar listener
-        tablaNodosABB.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                int filaSeleccionada = tablaNodosABB.getSelectedRow();
-                if (filaSeleccionada != -1) { // Check if a valid row is selected
-                    String dpi = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0); // Get DPI directly
-                    String nombre = (String) tablaNodosABB.getValueAt(filaSeleccionada, 1); // Get Nombre directly
-                    System.out.println("Nombre: " + nombre + " | DPI: " + dpi);
-                }
-            }
-        });
     }
 
     void cargarDatosTabla() {

@@ -132,7 +132,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="1cb3d" binding="panelABB" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="1cb3d" binding="panelABB" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card1"/>
@@ -151,7 +151,7 @@
               </component>
               <vspacer id="9b979">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <hspacer id="1b05b">
@@ -175,7 +175,7 @@
               </hspacer>
               <component id="17555" class="javax.swing.JButton" binding="encriptarButton" default-binding="true">
                 <constraints>
-                  <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -184,7 +184,7 @@
               </component>
               <component id="daf00" class="javax.swing.JButton" binding="cargarArchivoABB">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -193,7 +193,7 @@
               </component>
               <hspacer id="b40cf">
                 <constraints>
-                  <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
               <component id="3fb3" class="javax.swing.JTextField" binding="textField1" default-binding="true">
@@ -224,7 +224,7 @@
               </component>
               <component id="ef1d8" class="javax.swing.JButton" binding="comprimirButton" default-binding="true">
                 <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -233,7 +233,7 @@
               </component>
               <component id="158fb" class="javax.swing.JTable" binding="tablaNodosABB" custom-create="true">
                 <constraints>
-                  <grid row="2" column="2" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="2" column="2" row-span="4" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
@@ -259,11 +259,29 @@
               </component>
               <component id="dc0fb" class="javax.swing.JButton" binding="verArbolButtonABB">
                 <constraints>
-                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="3" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
                   <text value="Ver arbol"/>
+                </properties>
+              </component>
+              <component id="9ca2a" class="javax.swing.JButton" binding="eliminarABBButton">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Eliminar"/>
+                </properties>
+              </component>
+              <component id="91549" class="javax.swing.JButton" binding="actualizarABBButton">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Actualizar"/>
                 </properties>
               </component>
             </children>
@@ -364,6 +382,113 @@
                   <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
+            </children>
+          </grid>
+          <grid id="38547" binding="panelActualizarPersonaABB" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="a010e" class="javax.swing.JButton" binding="regresarActualizarABBButton">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Regresar"/>
+                </properties>
+              </component>
+              <vspacer id="e5c0d">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="8e72e" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Actualizar persona"/>
+                </properties>
+              </component>
+              <hspacer id="25a30">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="7c439">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <grid id="b8a1" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="78c54" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="DPI nuevo"/>
+                    </properties>
+                  </component>
+                  <component id="9906f" class="javax.swing.JTextField" binding="DPINuevoABB">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="c8c30" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="3" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Nombre"/>
+                    </properties>
+                  </component>
+                  <component id="a5fd5" class="javax.swing.JTextField" binding="DPIAntiguoABB">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="99e73" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="DPI antiguo"/>
+                    </properties>
+                  </component>
+                  <component id="f089" class="javax.swing.JTextField" binding="nombreCambiadoABB">
+                    <constraints>
+                      <grid row="2" column="1" row-span="3" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+              <component id="94349" class="javax.swing.JButton" binding="actualizarPersonaABB">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Actualizar"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>

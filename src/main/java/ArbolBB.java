@@ -116,6 +116,7 @@ public class ArbolBB {
 
     public void eliminar(long dpi) {
         raiz = eliminarNodo(raiz, dpi);
+        actualizarGUI();
     }
 
     private Nodo minimo(Nodo nodo) {
@@ -164,10 +165,11 @@ public class ArbolBB {
         return raiz;
     }
 
-    public void editar(long dpi, int dpiNuevo, String nombre) {
+    public void editar(long dpi, long dpiNuevo, String nombre) {
         boolean encontrado = editarNodo(raiz, dpi, dpiNuevo, nombre);
         if (encontrado) {
             System.out.println("Editado");
+            actualizarGUI();
         } else {
             System.out.println("No se encontro");
         }
