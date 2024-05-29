@@ -1,5 +1,9 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Scanner;
 
 class Nodo {
     long dpi;
@@ -15,21 +19,20 @@ class Nodo {
 
 public class ArbolBB {
     Nodo raiz;
-    public FileWriter arbolDot;
-    public FileWriter arbolTxt;
 
     public ArbolBB() {
         raiz = null;
-        try {
-            arbolDot = new FileWriter("arbolBB.dot");
-            arbolTxt = new FileWriter("arbolBB.txt");
-            arbolDot.append("digraph G {\n");
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
+        cargarArbol();
     }
 
-    public void insertar(long dpi, String nombre) {
+    // Inserta a tabla, archivo de texto, archivo dot
+    public void insertarGUI(long dpi, String nombre) {
+        raiz = insertarNodo(raiz, dpi, nombre);
+        actualizarGUI();
+    }
+
+    // Solo para inicializar datos
+    public void insertarArbol(long dpi, String nombre) {
         raiz = insertarNodo(raiz, dpi, nombre);
     }
 
@@ -37,12 +40,6 @@ public class ArbolBB {
         if (raiz == null) {
             raiz = new Nodo(dpi, nombre);
             System.out.println(raiz.nombre);
-            try {
-                String dpiConvertido = "" + raiz.dpi;
-                arbolDot.append("\t" + dpiConvertido + " [label=\"" + raiz.nombre + "\"]\n");
-            } catch (IOException exception) {
-                System.out.println(exception.getMessage());
-            }
             return raiz;
         }
         if (dpi < raiz.dpi) {
@@ -53,66 +50,68 @@ public class ArbolBB {
         return raiz;
     }
 
-    void inorder() {
-        recorridoInorder(raiz);
-    }
-
-    void recorridoInorder(Nodo raiz) {
-        if (raiz != null) {
-            recorridoInorder(raiz.izquierda);
-            System.out.print("Nombre: " + raiz.nombre + " | DPI: " + raiz.dpi);
-            recorridoInorder(raiz.derecha);
-        }
-    }
-
-    public void preorder() {
+    // Actualiza tabla, archivo de texto y archivo dot
+    public void actualizarGUI() {
         try {
-            recorridoPreorder(raiz);
+            FileWriter arbolTxt = new FileWriter("arbolBB.txt");
+            FileWriter declaracionDot = new FileWriter("dotDeclaracionesABB.txt");
+            FileWriter relacionesDot = new FileWriter("dotRelacionesABB.txt");
+            FileWriter archivoDot = new FileWriter("arbolBB.dot");
+            archivoDot.append("digraph G {\n");
+            recorridoPreorderGUI(raiz, arbolTxt, declaracionDot, relacionesDot);
+            declaracionDot.close();
+            relacionesDot.close();
             arbolTxt.close();
-            arbolDot.append("}");
-            arbolDot.close();
-        } catch (IOException df) {
-            System.out.println(df.getMessage());
+            Path declaracionesRuta = Path.of("dotDeclaracionesABB.txt");
+            String declaraciones = Files.readString(declaracionesRuta);
+            archivoDot.append(declaraciones + "\n");
+            Path relacionesRuta = Path.of("dotRelacionesABB.txt");
+            String relaciones = Files.readString(relacionesRuta);
+            archivoDot.append(relaciones + "\n" + "}");
+            archivoDot.close();
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 
-    public void recorridoPreorder(Nodo raiz) {
+    // Escribe en archivo texto y dot
+    public void recorridoPreorderGUI(Nodo raiz, FileWriter arbolTxt, FileWriter declaracionDot, FileWriter relacionesDot) {
         try {
             if (raiz != null) {
                 String registro = raiz.nombre + "\t" + raiz.dpi + "\n";
                 arbolTxt.append(registro);
+                String dpiConvertido = "" + raiz.dpi;
+                declaracionDot.append("\t" + dpiConvertido + " [label=\"" + raiz.nombre + "\"]\n");
 
                 // Estableciendo relaciones en el documento dot
-                // Depurando datos
-                String stringDpi = "" + raiz.dpi;
-
                 // Manejando los distintos casos
                 if (raiz.derecha != null && raiz.izquierda != null) {
-                    arbolDot.append("\t" + stringDpi + " -> " + raiz.izquierda.dpi + "\n");
-                    arbolDot.append("\t" + stringDpi + " -> " + raiz.derecha.dpi + "\n");
+                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.izquierda.dpi + "\n");
+                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.derecha.dpi + "\n");
                 } else if(raiz.derecha == null && raiz.izquierda != null) {
-                    arbolDot.append("\t" + stringDpi + " -> " + raiz.izquierda.dpi + "\n");
+                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.izquierda.dpi + "\n");
                 } else if(raiz.izquierda == null && raiz.derecha != null) {
-                    arbolDot.append("\t" + stringDpi + " -> " + raiz.derecha.dpi + "\n");
+                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.derecha.dpi + "\n");
                 }
-                recorridoPreorder(raiz.izquierda);
-                recorridoPreorder(raiz.derecha);
+                recorridoPreorderGUI(raiz.izquierda, arbolTxt, declaracionDot, relacionesDot);
+                recorridoPreorderGUI(raiz.derecha, arbolTxt, declaracionDot, relacionesDot);
             }
         } catch(IOException exception) {
             System.out.println(exception.getMessage());
         }
     }
 
-    void postorder() {
-        recorridoPostorder(raiz);
+    public void preorderArbol() {
+        recorridoPreorderArbol(raiz);
     }
 
-    void recorridoPostorder(Nodo raiz) {
-        if (raiz != null) {
-            recorridoPostorder(raiz.izquierda);
-            recorridoPostorder(raiz.derecha);
-            System.out.print("Nombre: " + raiz.nombre + " | DPI: " + raiz.dpi);
-        }
+    public void recorridoPreorderArbol(Nodo raiz) {
+            if (raiz != null) {
+                String registro = raiz.nombre + "\t" + raiz.dpi + "\n";
+                System.out.println(registro);
+                recorridoPreorderArbol(raiz.izquierda);
+                recorridoPreorderArbol(raiz.derecha);
+            }
     }
 
     public void eliminar(long dpi) {
@@ -173,6 +172,7 @@ public class ArbolBB {
             System.out.println("No se encontro");
         }
     }
+
     boolean editarNodo(Nodo raiz, long dpiAntiguo, long nuevoDpi, String nombre) {
         if (raiz == null) {
             return false; // Node not found
@@ -186,5 +186,25 @@ public class ArbolBB {
         } else {
             return editarNodo(raiz.derecha, dpiAntiguo, nuevoDpi, nombre);
         }
+    }
+
+    public void cargarArbol() {
+        try (Scanner scanner = new Scanner(new File("arbolBB.txt"))) {
+            while(scanner.hasNext()) {
+                String linea = scanner.nextLine();
+                String[] datos = linea.split("\t");
+
+                // Procesando datos
+                if (datos.length == 2) {
+                    String nombre = datos[0];
+                    String dpiPuro = datos[1].replaceAll("[^\\d]", "");
+                    long dpi = Long.parseLong(dpiPuro);
+
+                    insertarArbol(dpi, nombre);
+                }
+            }
+        } catch(IOException exception) {
+        System.out.println(exception.getMessage());
+    }
     }
 }
