@@ -20,6 +20,7 @@ class Nodo {
 public class ArbolBB {
     Nodo raiz;
 
+
     public ArbolBB() {
         raiz = null;
         cargarArbol();
