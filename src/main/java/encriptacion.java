@@ -1,69 +1,70 @@
+import java.util.HashMap;
+import java.util.Random;
+
 public class encriptacion {
 
-        // The substitution table (can be customized)
-        private static final String KEY = "ZEBRASCDFGHIJKLMNOPQTUVWXY";
 
-        public static String encrypt(String plaintext) {
+        private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789áéíóúÁÉÍÓÚ";
+
+        private static HashMap<Character, Character> generateKey() {
+            HashMap<Character, Character> key = new HashMap<>();
+            char[] shuffledAlphabet = ALPHABET.toCharArray();
+            shuffleArray(shuffledAlphabet);
+
+            for (int i = 0; i < ALPHABET.length(); i++) {
+                key.put(ALPHABET.charAt(i), shuffledAlphabet[i]);
+            }
+
+            return key;
+        }
+
+        // Fisher-Yates shuffle to randomize the alphabet
+        private static void shuffleArray(char[] array) {
+            Random rand = new Random();
+            for (int i = array.length - 1; i > 0; i--) {
+                int index = rand.nextInt(i + 1);
+                char temp = array[index];
+                array[index] = array[i];
+                array[i] = temp;
+            }
+        }
+
+        public static String encrypt(String plaintext, HashMap<Character, Character> key) {
             StringBuilder ciphertext = new StringBuilder();
 
-            for (int i = 0; i < plaintext.length(); i++) {
-                char currentChar = plaintext.charAt(i);
-
-                if (Character.isLetter(currentChar)) {
-                    // Determine the position of the current character in the alphabet (0-based)
-                    int originalIndex = Character.toUpperCase(currentChar) - 'A';
-
-                    // Get the corresponding character from the key
-                    char substitutedChar = KEY.charAt(originalIndex);
-
-                    // Maintain the original case
-                    if (Character.isLowerCase(currentChar)) {
-                        substitutedChar = Character.toLowerCase(substitutedChar);
-                    }
-
-                    ciphertext.append(substitutedChar);
-                } else {
-                    // Non-letter characters remain unchanged
-                    ciphertext.append(currentChar);
-                }
+            for (char c : plaintext.toCharArray()) {
+                Character encryptedChar = key.get(c);
+                ciphertext.append(encryptedChar != null ? encryptedChar : c); // Keep unmapped characters
             }
+
             return ciphertext.toString();
         }
 
-        public static String decrypt(String ciphertext) {
+        public static String decrypt(String ciphertext, HashMap<Character, Character> key) {
             StringBuilder plaintext = new StringBuilder();
+            HashMap<Character, Character> reverseKey = new HashMap<>(); // Create reverse key
 
-            for (int i = 0; i < ciphertext.length(); i++) {
-                char currentChar = ciphertext.charAt(i);
+            for (char c : key.keySet()) {
+                reverseKey.put(key.get(c), c);
+            }
 
-                if (Character.isLetter(currentChar)) {
-                    // Determine the position of the current character in the key
-                    int keyIndex = KEY.indexOf(Character.toUpperCase(currentChar));
-
-                    // Get the corresponding character from the alphabet
-                    char originalChar = (char) ('A' + keyIndex);
-
-                    // Maintain the original case
-                    if (Character.isLowerCase(currentChar)) {
-                        originalChar = Character.toLowerCase(originalChar);
-                    }
-
-                    plaintext.append(originalChar);
-                } else {
-                    plaintext.append(currentChar);
-                }
+            for (char c : ciphertext.toCharArray()) {
+                Character decryptedChar = reverseKey.get(c);
+                plaintext.append(decryptedChar != null ? decryptedChar : c); // Keep unmapped characters
             }
 
             return plaintext.toString();
         }
 
-        public static void main(String[] args) {
-            String plaintext = "HELLO WORLD!";
-            String ciphertext = encrypt(plaintext);
-            String decrypted = decrypt(ciphertext);
 
-            System.out.println("Plaintext:  " + plaintext);
+        public static void main(String[] args) {
+            HashMap<Character, Character> key = generateKey();
+            String plaintext = "Natalia Maucelia Tomas García 1766455351302";
+
+            String ciphertext = encrypt(plaintext, key);
             System.out.println("Ciphertext: " + ciphertext);
-            System.out.println("Decrypted:  " + decrypted);
+
+            String decrypted = decrypt(ciphertext, key);
+            System.out.println("Decrypted: " + decrypted);
         }
 }
