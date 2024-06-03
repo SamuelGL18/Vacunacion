@@ -65,8 +65,4 @@ public class EncriptacionSustitucion {
             }
             return textoDesencriptado.toString();
         }
-
-    public static void main(String[] args) {
-
-    }
 }
