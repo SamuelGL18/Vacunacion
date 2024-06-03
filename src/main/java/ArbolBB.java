@@ -19,10 +19,13 @@ class Nodo {
 
 public class ArbolBB {
     Nodo raiz;
-
+    EncriptacionSustitucion encriptador;
+    Comprimidor comprimidor;
 
     public ArbolBB() {
         raiz = null;
+        encriptador = new EncriptacionSustitucion();
+        comprimidor = new Comprimidor();
         cargarArbol();
     }
 

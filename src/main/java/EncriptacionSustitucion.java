@@ -1,13 +1,13 @@
 import java.util.HashMap;
 import java.util.Random;
 
-public class encriptacionSustitucion {
+public class EncriptacionSustitucion {
 
-        private final String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789áéíóúÁÉÍÓÚ";
+        private final String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789áéíóúÁÉÍÓÚ/";
 
         private HashMap<Character, Character> mapa;
 
-        public encriptacionSustitucion() {
+        public EncriptacionSustitucion() {
             mapa = crearMapa();
             System.out.println(mapa);
         }
@@ -65,4 +65,8 @@ public class encriptacionSustitucion {
             }
             return textoDesencriptado.toString();
         }
+
+    public static void main(String[] args) {
+
+    }
 }

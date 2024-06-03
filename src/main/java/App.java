@@ -276,7 +276,6 @@ public class App {
                     model.addRow(new Object[]{datos[1], datos[0]});
                 }
             }
-
         } catch(IOException exception) {
             System.out.println(exception.getMessage());
         }
