@@ -9,7 +9,6 @@ public class EncriptacionSustitucion {
 
         public EncriptacionSustitucion() {
             mapa = crearMapa();
-            System.out.println(mapa);
         }
 
         // Crear mapa randomizado

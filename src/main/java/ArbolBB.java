@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,11 +10,19 @@ class Nodo {
     long dpi;
     String nombre;
     Nodo izquierda, derecha;
+    String departamento;
+    String municipio;
+    String dosis;
+    String fechaPrimeraVacuna;
+    String fechaSegundaVacuna;
+    String fechaTerceraVacuna;
+    String lugarVacunacion;
 
     public Nodo(long dpi, String nombre) {
         this.dpi = dpi;
         this.nombre = nombre;
         izquierda = derecha = null;
+        departamento = municipio = dosis = fechaPrimeraVacuna = fechaSegundaVacuna = fechaTerceraVacuna = lugarVacunacion = "Vacio";
     }
 }
 
@@ -36,10 +45,32 @@ public class ArbolBB {
     }
 
     // Solo para inicializar datos
-    public void insertarArbol(long dpi, String nombre) {
-        raiz = insertarNodo(raiz, dpi, nombre);
+    public void insertarArbol(long dpi, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
+        raiz = insertar(raiz, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
     }
 
+    // Para inicializar datos
+    Nodo insertar(Nodo raiz, long dpi, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
+        if (raiz == null) {
+            raiz = new Nodo(dpi, nombre);
+            raiz.departamento = departamento;
+            raiz.municipio = municipio;
+            raiz.dosis = dosis;
+            raiz.fechaPrimeraVacuna = fechaPrimeraVacuna;
+            raiz.fechaSegundaVacuna = fechaSegundaVacuna;
+            raiz.fechaTerceraVacuna = fechaTerceraVacuna;
+            raiz.lugarVacunacion = lugarVacunacion;
+            return raiz;
+        }
+        if (dpi < raiz.dpi) {
+            raiz.izquierda = insertar(raiz.izquierda, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+        } else if (dpi > raiz.dpi) {
+            raiz.derecha = insertar(raiz.derecha, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+        }
+        return raiz;
+    }
+
+    // Cargar los datos anteriores
     Nodo insertarNodo(Nodo raiz, long dpi, String nombre) {
         if (raiz == null) {
             raiz = new Nodo(dpi, nombre);
@@ -82,10 +113,10 @@ public class ArbolBB {
     public void recorridoPreorderGUI(Nodo raiz, FileWriter arbolTxt, FileWriter declaracionDot, FileWriter relacionesDot) {
         try {
             if (raiz != null) {
-                String registro = raiz.nombre + "\t" + raiz.dpi + "\n";
+                String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.lugarVacunacion + "\n";
                 arbolTxt.append(registro);
                 String dpiConvertido = "" + raiz.dpi;
-                declaracionDot.append("\t" + dpiConvertido + " [label=\"" + raiz.nombre + "\"]\n");
+                declaracionDot.append("\t" + dpiConvertido + " [label=\"" + "Nombre: " + raiz.nombre + "\n" + "DPI: " + raiz.dpi + "\n" + "Departamento: " + raiz.departamento + "\n" + "Municipio: " + raiz.municipio + "\n" + "Dosis: " + raiz.dosis + "\n" + "Primera vacuna" + raiz.fechaPrimeraVacuna + "\n" + "Segunda vacuna" + raiz.fechaSegundaVacuna + "\n" + "Tercera vacuna: " + raiz.fechaTerceraVacuna + "\n" + "Lugar vacunacion: " + raiz.lugarVacunacion + "\"]\n");
 
                 // Estableciendo relaciones en el documento dot
                 // Manejando los distintos casos
@@ -111,7 +142,7 @@ public class ArbolBB {
 
     public void recorridoPreorderArbol(Nodo raiz) {
             if (raiz != null) {
-                String registro = raiz.nombre + "\t" + raiz.dpi + "\n";
+                String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion;
                 System.out.println(registro);
                 recorridoPreorderArbol(raiz.izquierda);
                 recorridoPreorderArbol(raiz.derecha);
@@ -132,45 +163,52 @@ public class ArbolBB {
 
     Nodo eliminarNodo(Nodo raiz, long dpi) {
         if (raiz == null) {
-            return raiz; // Node not found
+            return raiz;
         }
-        // Search for the node to be deleted
+
         if (dpi < raiz.dpi) {
             raiz.izquierda = eliminarNodo(raiz.izquierda, dpi);
         } else if (dpi > raiz.dpi) {
             raiz.derecha = eliminarNodo(raiz.derecha, dpi);
-        } else { // Node to be deleted found
+        } else {
 
-            // Case 1: Node has no children (leaf node)
+            // Caso hoja
             if (raiz.izquierda == null && raiz.derecha == null) {
                 return null;
             }
 
-            // Case 2: Node has one child
+            // Caso un hijo
             else if (raiz.izquierda == null) {
                 return raiz.derecha;
             } else if (raiz.derecha == null) {
                 return raiz.izquierda;
             }
 
-            // Case 3: Node has two children
+            // Caso 2 hijos
             else {
-                // Find the inorder successor (smallest in the right subtree)
+                // Encontrando sucesor
                 Nodo sucesorInorder = minimo(raiz.derecha);
 
-                // Replace the node's data with the successor's data
+                // Reemplazar datos
                 raiz.dpi = sucesorInorder.dpi;
                 raiz.nombre = sucesorInorder.nombre;
+                raiz.departamento = sucesorInorder.departamento;
+                raiz.municipio = sucesorInorder.municipio;
+                raiz.dosis = sucesorInorder.dosis;
+                raiz.fechaPrimeraVacuna = sucesorInorder.fechaPrimeraVacuna;
+                raiz.fechaSegundaVacuna = sucesorInorder.fechaSegundaVacuna;
+                raiz.fechaTerceraVacuna = sucesorInorder.fechaTerceraVacuna;
+                raiz.lugarVacunacion = sucesorInorder.lugarVacunacion;
 
-                // Delete the inorder successor from the right subtree
+                // Eliminarlo
                 raiz.derecha = eliminarNodo(raiz.derecha, sucesorInorder.dpi);
             }
         }
         return raiz;
     }
 
-    public void editar(long dpi, long dpiNuevo, String nombre) {
-        boolean encontrado = editarNodo(raiz, dpi, dpiNuevo, nombre);
+    public void editar(long dpi, long dpiNuevo, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
+        boolean encontrado = editarNodo(raiz, dpi, dpiNuevo, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
         if (encontrado) {
             System.out.println("Editado");
             actualizarGUI();
@@ -179,18 +217,25 @@ public class ArbolBB {
         }
     }
 
-    boolean editarNodo(Nodo raiz, long dpiAntiguo, long nuevoDpi, String nombre) {
+    boolean editarNodo(Nodo raiz, long dpi, long dpiNuevo, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
         if (raiz == null) {
-            return false; // Node not found
+            return false;
         }
-        if (dpiAntiguo == raiz.dpi) {
-            raiz.dpi = nuevoDpi;
-            raiz.nombre = nombre;// Update the node's data
-            return true; // Node found and updated
-        } else if (dpiAntiguo < raiz.dpi) {
-            return editarNodo(raiz.izquierda, dpiAntiguo, nuevoDpi, nombre);
+        if (dpi == raiz.dpi) {
+            raiz.dpi = dpiNuevo;
+            raiz.nombre = nombre;
+            raiz.departamento = departamento;
+            raiz.municipio = municipio;
+            raiz.dosis = dosis;
+            raiz.fechaPrimeraVacuna = fechaPrimeraVacuna;
+            raiz.fechaSegundaVacuna = fechaSegundaVacuna;
+            raiz.fechaTerceraVacuna = fechaTerceraVacuna;
+            raiz.lugarVacunacion = lugarVacunacion;
+            return true;
+        } else if (dpi < raiz.dpi) {
+            return editarNodo(raiz.izquierda, dpi, dpiNuevo, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
         } else {
-            return editarNodo(raiz.derecha, dpiAntiguo, nuevoDpi, nombre);
+            return editarNodo(raiz.derecha, dpi, dpiNuevo, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
         }
     }
 
@@ -201,16 +246,65 @@ public class ArbolBB {
                 String[] datos = linea.split("\t");
 
                 // Procesando datos
-                if (datos.length == 2) {
                     String nombre = datos[0];
                     String dpiPuro = datos[1].replaceAll("[^\\d]", "");
                     long dpi = Long.parseLong(dpiPuro);
+                    String departamento = datos[2];
+                    String municipio = datos[3];
+                    String dosis = datos[4];
+                    String fechaPrimeraVacuna = datos[5];
+                    String fechaSegundaVacuna = datos[6];
+                    String fechaTerceraVacuna = datos[7];
+                    String lugarVacunacion = datos[8];
 
-                    insertarArbol(dpi, nombre);
-                }
+                    insertarArbol(dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
             }
         } catch(IOException exception) {
         System.out.println(exception.getMessage());
     }
+    }
+
+    public void buscar(long dpi) {
+        long tiempoInicio = System.nanoTime();
+        Nodo persona = buscarNodo(raiz, dpi);
+        long tiempoCompletado = System.nanoTime();
+        long duracion = (tiempoCompletado - tiempoInicio);
+        JOptionPane.showMessageDialog(null, "Nombre: " + persona.nombre + "\n" + "DPI: " + persona.dpi + "\n" + "Departamento: " + persona.departamento + "\n" + "Municipio: " + persona.municipio + "\n" + "Dosis: " + persona.dosis + "\n" + "Fecha primera vacuna: " + persona.fechaPrimeraVacuna + "\n" + "Fecha segunda vacuna: " + persona.fechaSegundaVacuna + "\n" + "Fecha tercera vacuna: " + persona.fechaTerceraVacuna + "\n" + "Lugar de vacunacion: " + persona.lugarVacunacion + "\n" + "Tiempo que duro la busqueda: " + duracion + " nanosegundos", "Persona", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private Nodo buscarNodo(Nodo nodoActual, long dpi) {
+        if (nodoActual == null || nodoActual.dpi == dpi) {
+            return nodoActual;
+        }
+        if (dpi < nodoActual.dpi) {
+            return buscarNodo(nodoActual.izquierda, dpi);
+        }
+        return buscarNodo(nodoActual.derecha, dpi);
+    }
+
+    void inorder() {
+        recorridoInorder(raiz);
+    }
+
+    void recorridoInorder(Nodo raiz) {
+        if (raiz != null) {
+            recorridoInorder(raiz.izquierda);
+            String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion + "\n";
+            System.out.println(registro);
+            recorridoInorder(raiz.derecha);
+        }
+    }
+
+    void postorder() {
+        recorridoPostorder(raiz);
+    }
+
+    void recorridoPostorder(Nodo raiz) {
+        if (raiz != null) {
+            recorridoPostorder(raiz.izquierda);
+            recorridoPostorder(raiz.derecha);
+            String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion + "\n";
+            System.out.print(registro);
+        }
     }
 }

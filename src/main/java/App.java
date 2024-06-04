@@ -21,8 +21,8 @@ public class App {
     private JButton regresarAVL;
     private JButton cargarArchivoButton;
     private JButton button5;
-    private JTextField textField1;
-    private JButton buscarButton;
+    private JTextField nodoBuscadoABB;
+    private JButton buscarButtonABB;
     private JButton agregarABBButton;
     private JButton comprimirButton;
     private JTable tablaNodosABB;
@@ -43,6 +43,17 @@ public class App {
     private JTextField nombreCambiadoABB;
     private JButton actualizarPersonaABB;
     private JTextField DPIAntiguoABB;
+    private JButton postorderButtonABB;
+    private JButton inorderButtonABB;
+    private JButton desencriptarButton;
+    private JTextField departamentoNuevoABB;
+    private JTextField municipioNuevoABB;
+    private JTextField dosisNuevaABB;
+    private JTextField lugarVacunacionNuevoABB;
+    private JTextField fechaTerceraNuevaABB;
+    private JTextField fechaSegundaNuevaABB;
+    private JTextField fechaPrimeraNuevaABB;
+    private JTextField dpiAntiguoABB;
 
     // Modelo
     private File ArchivoSeleccionado;
@@ -113,6 +124,7 @@ public class App {
                             arbolBinario.insertarGUI(dpi, nombre);
                         }
                     }
+                    actualizarTabla();
                 } catch (FileNotFoundException exception) {
                     System.out.println(exception.getMessage());
                 }
@@ -151,52 +163,52 @@ public class App {
         verArbolButtonABB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 1. Execute dot Command
-                String dotFilePath = "arbolBB.dot"; // Replace with your DOT file path
-                String outputImagePath = "output.png"; // Desired output image path
+                // Declarando el nombre de los archivos
+                String archivoDot = "arbolBB.dot";
+                String nombreImagen = "arbolBB.png";
 
                 try {
-                    ProcessBuilder processBuilder = new ProcessBuilder("dot", "-Tpng", dotFilePath, "-o", outputImagePath);
-                    processBuilder.redirectErrorStream(true); // Merge error output with standard output
+                    ProcessBuilder processBuilder = new ProcessBuilder("dot", "-Tpng", archivoDot, "-o", nombreImagen);
+                    processBuilder.redirectErrorStream(true);
                     Process process = processBuilder.start();
-                    int exitCode = process.waitFor();
+                    int codigoSalida = process.waitFor();
 
-                    if (exitCode == 0) {
-                        System.out.println("Image generation successful!");
+                    if (codigoSalida == 0) {
+                        System.out.println("Imagen creada!");
                     } else {
-                        System.err.println("Image generation failed. Exit code: " + exitCode);
-                        // Optionally, read and display error output from the process
+                        System.err.println("Hubo un error, error: " + codigoSalida);
                     }
 
                 } catch (IOException | InterruptedException exception) {
                     exception.printStackTrace();
                 }
 
-                // 2. Load and Display Image in JDialog
+                // Agregar imagen a dialogo
                 SwingUtilities.invokeLater(() -> {
-                    ImageIcon imageIcon = new ImageIcon(outputImagePath);
-                    JLabel imageLabel = new JLabel(imageIcon);
+                    ImageIcon imageIcon = new ImageIcon(nombreImagen);
+                    JLabel imagen = new JLabel(imageIcon);
 
                     JDialog dialog = new JDialog();
-                    dialog.setTitle("Graph Visualization");
-                    dialog.add(new JScrollPane(imageLabel)); // Add scrollbars for large images
-                    dialog.pack(); // Size the dialog to fit the image
-                    dialog.setLocationRelativeTo(null); // Center the dialog on the screen
+                    dialog.setTitle("ArbolBB");
+                    dialog.add(new JScrollPane(imagen));
+                    dialog.pack();
+                    dialog.setLocationRelativeTo(null);
                     dialog.setVisible(true);
                 });
             }
         });
+
         eliminarABBButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tablaNodosABB.getSelectedRow();
                 if (filaSeleccionada != -1) {
-                    String dpiBruto = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0); // Get DPI from column 0
+                    String dpiBruto = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0);
                     long dpi = Long.parseLong(dpiBruto);
                     arbolBinario.eliminar(dpi);
                     actualizarTabla();
                 } else {
-                    System.out.println("No row selected.");
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -205,16 +217,31 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tablaNodosABB.getSelectedRow();
                 if (filaSeleccionada != -1) {
-                    String dpi = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0); // Get DPI from column 0
+                    irA(panelActualizarPersonaABB);
+                    String dpi = (String) tablaNodosABB.getValueAt(filaSeleccionada, 0);
                     String nombre = (String) tablaNodosABB.getValueAt(filaSeleccionada, 1);
+                    String departamento = (String) tablaNodosABB.getValueAt(filaSeleccionada, 2);
+                    String municipio = (String) tablaNodosABB.getValueAt(filaSeleccionada, 3);
+                    String dosis = (String) tablaNodosABB.getValueAt(filaSeleccionada, 4);
+                    String fechaPrimeraVacuna = (String) tablaNodosABB.getValueAt(filaSeleccionada, 5);
+                    String fechaSegundaVacuna = (String) tablaNodosABB.getValueAt(filaSeleccionada, 6);
+                    String fechaTerceraVacuna = (String) tablaNodosABB.getValueAt(filaSeleccionada, 7);
+                    String lugarVacunacion = (String) tablaNodosABB.getValueAt(filaSeleccionada, 8);
+
                     DPINuevoABB.setText(dpi);
+                    dpiAntiguoABB.setText(dpi);
                     nombreCambiadoABB.setText(nombre);
-                    DPIAntiguoABB.setText(dpi);
+                    departamentoNuevoABB.setText(departamento);
+                    municipioNuevoABB.setText(municipio);
+                    dosisNuevaABB.setText(dosis);
+                    fechaPrimeraNuevaABB.setText(fechaPrimeraVacuna);
+                    fechaSegundaNuevaABB.setText(fechaSegundaVacuna);
+                    fechaTerceraNuevaABB.setText(fechaTerceraVacuna);
+                    lugarVacunacionNuevoABB.setText(lugarVacunacion);
                     actualizarTabla();
                 } else {
-                    System.out.println("No row selected.");
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                irA(panelActualizarPersonaABB);
             }
         });
         regresarActualizarABBButton.addActionListener(new ActionListener() {
@@ -226,11 +253,38 @@ public class App {
         actualizarPersonaABB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                long dpiAntiguo = Long.parseLong(DPIAntiguoABB.getText());
+                long dpiAntiguo = Long.parseLong(dpiAntiguoABB.getText());
                 long dpiNuevo = Long.parseLong(DPINuevoABB.getText());
                 String nombre = nombreCambiadoABB.getText();
-                arbolBinario.editar(dpiAntiguo, dpiNuevo, nombre);
+                String departamento = departamentoNuevoABB.getText();
+                String municipio = municipioNuevoABB.getText();
+                String dosis = dosisNuevaABB.getText();
+                String fechaPrimeraVacuna = fechaPrimeraNuevaABB.getText();
+                String fechaSegundaVacuna = fechaSegundaNuevaABB.getText();
+                String fechaTerceraVacuna = fechaTerceraNuevaABB.getText();
+                String lugarVacunacion = lugarVacunacionNuevoABB.getText();
+
+                arbolBinario.editar(dpiAntiguo, dpiNuevo, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
                 actualizarTabla();
+            }
+        });
+        buscarButtonABB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                long dpi = Long.parseLong(nodoBuscadoABB.getText());
+                arbolBinario.buscar(dpi);
+            }
+        });
+        postorderButtonABB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.postorder();
+            }
+        });
+        inorderButtonABB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.inorder();
             }
         });
     }
@@ -257,8 +311,9 @@ public class App {
     }
 
     void crearTabla() {
-        String[] columnas = {"DPI", "Nombre"};
-        model = new DefaultTableModel(columnas, 0); // Start with empty model
+        String[] columnas = {"DPI", "Nombre", "Departamento", "Municipio", "Cantidad de Dosis",
+                "Primera vacuna", "Segunda vacuna", "Tercera vacuna", "Lugar de vacunacion"};
+        model = new DefaultTableModel(columnas, 0);
 
         cargarDatosTabla();
 
@@ -267,14 +322,11 @@ public class App {
 
     void cargarDatosTabla() {
         try (Scanner scanner = new Scanner(new File("arbolBB.txt"))) {
-            while (scanner.hasNext()) { // Use hasNextLine() for lines
+            while (scanner.hasNext()) {
                 String linea = scanner.nextLine();
-                String[] datos = linea.split("\t"); // Split by tabs
+                String[] datos = linea.split("\t");
 
-                if (datos.length == 2) {
-                    // Create a row for the table model (swap order for DPI first)
-                    model.addRow(new Object[]{datos[1], datos[0]});
-                }
+                model.addRow(new Object[]{datos[1], datos[0], datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], datos[8]});
             }
         } catch(IOException exception) {
             System.out.println(exception.getMessage());
