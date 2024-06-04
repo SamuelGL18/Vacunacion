@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="App">
   <grid id="27dc6" binding="panelPrincipal" layout-manager="CardLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="864" height="570"/>
+      <xy x="20" y="20" width="995" height="570"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -64,68 +64,7 @@
           </hspacer>
         </children>
       </grid>
-      <grid id="89d14" binding="panelAVL" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <card name="Card3"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="95323" class="javax.swing.JButton" binding="regresarAVL">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="HoloLens MDL2 Assets" size="18" style="0"/>
-              <text value="Regresar"/>
-            </properties>
-          </component>
-          <hspacer id="26df4">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <vspacer id="58d82">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="ce297" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="HoloLens MDL2 Assets" size="24" style="0"/>
-              <text value="Arbol AVL"/>
-            </properties>
-          </component>
-          <hspacer id="6e0b4">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <component id="12f34" class="javax.swing.JButton" binding="cargarArchivoButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="HoloLens MDL2 Assets" size="18" style="0"/>
-              <text value="Cargar archivo"/>
-            </properties>
-          </component>
-          <component id="bc0e" class="javax.swing.JButton" binding="button5" default-binding="true">
-            <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="HoloLens MDL2 Assets" size="18" style="0"/>
-              <text value="Button"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="eaab5" binding="panelMenuABB" layout-manager="CardLayout" hgap="0" vgap="0">
+      <grid id="eaab5" binding="panelMenuABB" layout-manager="CardLayout" hgap="0" vgap="0" show="1cb3d">
         <constraints>
           <card name="Card4"/>
         </constraints>
@@ -671,6 +610,541 @@
                   <text value="Actualizar"/>
                 </properties>
               </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="89d14" binding="panelMenuAVL" layout-manager="CardLayout" hgap="0" vgap="0" show="b4ca4">
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="1e6b9" binding="panelAgregarPersonaAVL" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card2"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="d3770" class="javax.swing.JButton" binding="regresarAgregarButtonAVL">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Regresar"/>
+                </properties>
+              </component>
+              <hspacer id="b4a8e">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="f0bff">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="d53cb" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                  <text value="Agregar persona"/>
+                </properties>
+              </component>
+              <hspacer id="6047e">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <grid id="a7fbe" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f12c2" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="DPI"/>
+                    </properties>
+                  </component>
+                  <component id="f0638" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Nombre"/>
+                    </properties>
+                  </component>
+                  <component id="52b21" class="javax.swing.JTextField" binding="nombreAVL">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="47ead" class="javax.swing.JTextField" binding="dpiAVL">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+              <component id="c8793" class="javax.swing.JButton" binding="agregarNuevaPersonaButtonAVL">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Agregar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="1a421" binding="panelActualizarPersonaAVL" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card3"/>
+            </constraints>
+            <properties>
+              <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2028d" class="javax.swing.JButton" binding="regresarActualizarButtonAVL">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Regresar"/>
+                </properties>
+              </component>
+              <hspacer id="e205c">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="17fce">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="e5cd2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                  <text value="Actualizar persona"/>
+                </properties>
+              </component>
+              <hspacer id="2a296">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <grid id="d9ea0" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2ae9" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="DPI antiguo"/>
+                    </properties>
+                  </component>
+                  <component id="dc786" class="javax.swing.JTextField" binding="dpiAntiguoAVL">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="239c0" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="DPI nuevo"/>
+                    </properties>
+                  </component>
+                  <component id="fd139" class="javax.swing.JTextField" binding="dpiNuevoAVL">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="b86eb" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Nombre"/>
+                    </properties>
+                  </component>
+                  <component id="59c3a" class="javax.swing.JTextField" binding="nombreNuevoAVL">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="ef60d" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Departamento"/>
+                    </properties>
+                  </component>
+                  <component id="e46f4" class="javax.swing.JTextField" binding="departamentoNuevoAVL">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="78bc6" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Municipio"/>
+                    </properties>
+                  </component>
+                  <component id="bf0b0" class="javax.swing.JTextField" binding="municipioNuevoAVL">
+                    <constraints>
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="d3835" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Dosis"/>
+                    </properties>
+                  </component>
+                  <component id="3ead4" class="javax.swing.JTextField" binding="dosisNuevaAVL">
+                    <constraints>
+                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="f5697" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Fecha primera vacuna"/>
+                    </properties>
+                  </component>
+                  <component id="2f700" class="javax.swing.JTextField" binding="primeraNuevaAVL">
+                    <constraints>
+                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="edd4a" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Fecha segunda vacuna"/>
+                    </properties>
+                  </component>
+                  <component id="621f6" class="javax.swing.JTextField" binding="segundaNuevaAVL">
+                    <constraints>
+                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="9c534" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Fecha tercera vacuna"/>
+                    </properties>
+                  </component>
+                  <component id="6c673" class="javax.swing.JTextField" binding="terceraNuevaAVL">
+                    <constraints>
+                      <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="73397" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Lugar de vacunacion"/>
+                    </properties>
+                  </component>
+                  <component id="fb19a" class="javax.swing.JTextField" binding="lugarNuevoAVL">
+                    <constraints>
+                      <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
+              <component id="8e0f2" class="javax.swing.JButton" binding="actualizarPersonaButtonAVL">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Actualizar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b4ca4" binding="panelAVL" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card1"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="caa15" class="javax.swing.JButton" binding="regresarButtonAVL">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Regresar"/>
+                </properties>
+              </component>
+              <vspacer id="fc05">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="60050" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="1b349" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Buscar persona"/>
+                    </properties>
+                  </component>
+                  <component id="9702" class="javax.swing.JTextField" binding="personaBuscadaAVL">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="df4dd" class="javax.swing.JButton" binding="buscarButtonAVL">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Buscar"/>
+                    </properties>
+                  </component>
+                  <component id="2fc36" class="javax.swing.JButton" binding="agregarPersonaButtonAVL">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Agregar persona"/>
+                    </properties>
+                  </component>
+                  <component id="33860" class="javax.swing.JButton" binding="actualizarButtonAVL">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Actualizar"/>
+                    </properties>
+                  </component>
+                  <component id="a9ce8" class="javax.swing.JButton" binding="eliminarButtonAVL">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Eliminar"/>
+                    </properties>
+                  </component>
+                  <component id="e8822" class="javax.swing.JButton" binding="cargarArchivoButtonAVL">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Cargar archivo"/>
+                    </properties>
+                  </component>
+                  <component id="80e4e" class="javax.swing.JButton" binding="preorderButtonAVL">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Preorder"/>
+                    </properties>
+                  </component>
+                  <component id="bf809" class="javax.swing.JButton" binding="postorderButtonAVL">
+                    <constraints>
+                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Postorder"/>
+                    </properties>
+                  </component>
+                  <component id="32b2" class="javax.swing.JButton" binding="inorderButtonAVL">
+                    <constraints>
+                      <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Inorder"/>
+                    </properties>
+                  </component>
+                  <component id="2dd5b" class="javax.swing.JButton" binding="verArbolButtonAVL">
+                    <constraints>
+                      <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Ver arbol"/>
+                    </properties>
+                  </component>
+                  <scrollpane id="644ab">
+                    <constraints>
+                      <grid row="2" column="1" row-span="4" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="ec83" class="javax.swing.JTable" binding="table1" default-binding="true">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <vspacer id="12721">
+                    <constraints>
+                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="ff7af" class="javax.swing.JButton" binding="encriptarButtonAVL">
+                    <constraints>
+                      <grid row="7" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Encriptar"/>
+                    </properties>
+                  </component>
+                  <component id="57acd" class="javax.swing.JButton" binding="desencriptarButtonAVL">
+                    <constraints>
+                      <grid row="7" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Desencriptar"/>
+                    </properties>
+                  </component>
+                  <component id="1e9a5" class="javax.swing.JButton" binding="descomprimirButtonAVL">
+                    <constraints>
+                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Descomprimir"/>
+                    </properties>
+                  </component>
+                  <component id="aa901" class="javax.swing.JButton" binding="comprimirButtonAVL">
+                    <constraints>
+                      <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                      <text value="Comprimir"/>
+                    </properties>
+                  </component>
+                  <component id="5ff30" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="HoloLens MDL2 Assets" size="20" style="0"/>
+                      <text value="Arboles AVL"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
         </children>

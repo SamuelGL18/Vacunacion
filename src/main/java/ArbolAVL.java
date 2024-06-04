@@ -1,245 +1,278 @@
-class NodoAVL {
-    int key, height;
-    NodoAVL left, right;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
-    NodoAVL(int d) {
-        key = d;
-        height = 1;
+class NodoAVL {
+    long dpi;
+    int altura;
+    String nombre;
+    NodoAVL izquierda, derecha;
+    String departamento;
+    String municipio;
+    String dosis;
+    String fechaPrimeraVacuna;
+    String fechaSegundaVacuna;
+    String fechaTerceraVacuna;
+    String lugarVacunacion;
+
+    NodoAVL(long dpi, String nombre) {
+        altura = 1;
+        this.dpi = dpi;
+        this.nombre = nombre;
+        izquierda = derecha = null;
+        departamento = municipio = dosis = fechaPrimeraVacuna = fechaSegundaVacuna = fechaTerceraVacuna = lugarVacunacion = "Vacio";
     }
 }
 
 public class ArbolAVL {
 
+    private NodoAVL raiz;
+    EncriptacionSustitucion encriptador;
+    Comprimidor comprimidor;
 
-
-    private NodoAVL root;
-
-    // Get the height of the node
-    int height(NodoAVL N) {
-        if (N == null)
-            return 0;
-        return N.height;
+    public ArbolAVL() {
+        raiz = null;
+        encriptador = new EncriptacionSustitucion();
+        comprimidor = new Comprimidor();
+        cargarArbol();
     }
 
-    // Get maximum of two integers
+    // Get altura
+    int altura(NodoAVL nodo) {
+        if (nodo == null)
+            return 0;
+        return nodo.altura;
+    }
+
+    // Obtener el subarbol con mayor altura
     int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
-    // Right rotate subtree rooted with y
-    NodoAVL rightRotate(NodoAVL y) {
-        NodoAVL x = y.left;
-        NodoAVL T2 = x.right;
+    // Rotacion derecha
+    NodoAVL rotacionDerecha(NodoAVL y) {
+        NodoAVL x = y.izquierda;
+        NodoAVL T2 = x.derecha;
 
-        // Perform rotation
-        x.right = y;
-        y.left = T2;
+        // Rotacion
+        x.derecha = y;
+        y.izquierda = T2;
 
         // Update heights
-        y.height = max(height(y.left), height(y.right)) + 1;
-        x.height = max(height(x.left), height(x.right)) + 1;
+        y.altura = max(altura(y.izquierda), altura(y.derecha)) + 1;
+        x.altura = max(altura(x.izquierda), altura(x.derecha)) + 1;
 
-        // Return new root
         return x;
     }
 
-    // Left rotate subtree rooted with x
-    NodoAVL leftRotate(NodoAVL x) {
-        NodoAVL y = x.right;
-        NodoAVL T2 = y.left;
+    // Rotacion izquierda
+    NodoAVL rotacionIzquierda(NodoAVL x) {
+        NodoAVL y = x.derecha;
+        NodoAVL T2 = y.izquierda;
 
-        // Perform rotation
-        y.left = x;
-        x.right = T2;
+        // Hacer rotacion
+        y.izquierda = x;
+        x.derecha = T2;
 
-        // Update heights
-        x.height = max(height(x.left), height(x.right)) + 1;
-        y.height = max(height(y.left), height(y.right)) + 1;
+        // Actualizar alturas
+        x.altura = max(altura(x.izquierda), altura(x.derecha)) + 1;
+        y.altura = max(altura(y.izquierda), altura(y.derecha)) + 1;
 
-        // Return new root
         return y;
     }
 
-    // Get balance factor of node N
-    int getBalance(NodoAVL N) {
-        if (N == null)
+    // Get el factor de balance
+    int getFactorBalance(NodoAVL nodo) {
+        if (nodo == null)
             return 0;
-        return height(N.left) - height(N.right);
+        return altura(nodo.izquierda) - altura(nodo.derecha);
     }
 
-    NodoAVL insert(NodoAVL NodoAVL, int key) {
-        // 1. Perform the normal BST insertion
-        if (NodoAVL == null)
-            return (new NodoAVL(key));
+    // Solo para inicializar datos
+    public void insertarArbol(long dpi, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
+        raiz = insertar(raiz, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+    }
 
-        if (key < NodoAVL.key)
-            NodoAVL.left = insert(NodoAVL.left, key);
-        else if (key > NodoAVL.key)
-            NodoAVL.right = insert(NodoAVL.right, key);
-        else // Duplicate keys not allowed
-            return NodoAVL;
+    // Para inicializar datos
+    NodoAVL insertar(NodoAVL raiz, long dpi, String nombre, String departamento, String municipio, String dosis, String fechaPrimeraVacuna, String fechaSegundaVacuna, String fechaTerceraVacuna, String lugarVacunacion) {
+        if (raiz == null) {
+            raiz = new NodoAVL(dpi, nombre);
+            raiz.departamento = departamento;
+            raiz.municipio = municipio;
+            raiz.dosis = dosis;
+            raiz.fechaPrimeraVacuna = fechaPrimeraVacuna;
+            raiz.fechaSegundaVacuna = fechaSegundaVacuna;
+            raiz.fechaTerceraVacuna = fechaTerceraVacuna;
+            raiz.lugarVacunacion = lugarVacunacion;
+            return raiz;
+        }
+        if (dpi < raiz.dpi)
+            raiz.izquierda = insertar(raiz.izquierda, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+        else if (dpi > raiz.dpi)
+            raiz.derecha = insertar(raiz.derecha, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+        else
+            return raiz;
 
-        // 2. Update height of this ancestor NodoAVL
-        NodoAVL.height = 1 + max(height(NodoAVL.left), height(NodoAVL.right));
+        // 2. Actualizar la altura de cada nodo
+        raiz.altura = 1 + max(altura(raiz.izquierda), altura(raiz.derecha));
 
-        // 3. Get the balance factor of this ancestor NodoAVL to check whether this NodoAVL became unbalanced
-        int balance = getBalance(NodoAVL);
+        // 3.Obtener factores de balance
+        int balance = getFactorBalance(raiz);
 
-        // If this NodoAVL becomes unbalanced, then there are 4 cases
+        // Casos de desbalance
 
-        // Left Left Case
-        if (balance > 1 && key < NodoAVL.left.key)
-            return rightRotate(NodoAVL);
+        // Caso izquierda izquierda
+        if (balance > 1 && dpi < raiz.izquierda.dpi)
+            return rotacionDerecha(raiz);
 
-        // Right Right Case
-        if (balance < -1 && key > NodoAVL.right.key)
-            return leftRotate(NodoAVL);
+        // Caso derecha derecha
+        if (balance < -1 && dpi > raiz.derecha.dpi)
+            return rotacionIzquierda(raiz);
 
-        // Left Right Case
-        if (balance > 1 && key > NodoAVL.left.key) {
-            NodoAVL.left = leftRotate(NodoAVL.left);
-            return rightRotate(NodoAVL);
+        // Caso izquierda derecha
+        if (balance > 1 && dpi > raiz.izquierda.dpi) {
+            raiz.izquierda = rotacionIzquierda(raiz.izquierda);
+            return rotacionDerecha(raiz);
         }
 
-        // Right Left Case
-        if (balance < -1 && key < NodoAVL.right.key) {
-            NodoAVL.right = rightRotate(NodoAVL.right);
-            return leftRotate(NodoAVL);
+        // Caso derecha izquierda
+        if (balance < -1 && dpi < raiz.derecha.dpi) {
+            raiz.derecha = rotacionDerecha(raiz.derecha);
+            return rotacionIzquierda(raiz);
         }
 
-        // return the (unchanged) NodoAVL pointer
-        return NodoAVL;
+        return raiz;
     }
 
-    // Given a non-empty binary search tree, return the NodoAVL with minimum key value found in that tree.
-    NodoAVL minValueNode(NodoAVL NodoAVL) {
-        NodoAVL current = NodoAVL;
+    // Obteniendo el reemplazo
+    NodoAVL minimo(NodoAVL raiz) {
+        NodoAVL actual = raiz;
 
-        // loop down to find the leftmost leaf
-        while (current.left != null)
-            current = current.left;
+        // Encontrar al que esta mas a la izquierda
+        while (actual.izquierda != null)
+            actual = actual.izquierda;
 
-        return current;
+        return actual;
     }
 
-    NodoAVL deleteNode(NodoAVL root, int key) {
-        // STEP 1: PERFORM STANDARD BST DELETE
-        if (root == null)
-            return root;
+    NodoAVL eliminarNodo(NodoAVL raiz, long dpi) {
+        // Eliminacion normal
+        if (raiz == null)
+            return raiz;
 
-        // If the key to be deleted is smaller than the root's key, then it lies in left subtree
-        if (key < root.key)
-            root.left = deleteNode(root.left, key);
+        if (dpi < raiz.dpi)
+            raiz.izquierda = eliminarNodo(raiz.izquierda, dpi);
 
-            // If the key to be deleted is greater than the root's key, then it lies in right subtree
-        else if (key > root.key)
-            root.right = deleteNode(root.right, key);
+        else if (dpi > raiz.dpi)
+            raiz.derecha = eliminarNodo(raiz.derecha, dpi);
 
-            // if key is same as root's key, then this is the node to be deleted
         else {
-            // node with only one child or no child
-            if ((root.left == null) || (root.right == null)) {
+            // Hoja o solo un hijo
+            if ((raiz.izquierda == null) || (raiz.derecha == null)) {
                 NodoAVL temp = null;
-                if (temp == root.left)
-                    temp = root.right;
+                if (temp == raiz.izquierda)
+                    temp = raiz.derecha;
                 else
-                    temp = root.left;
+                    temp = raiz.izquierda;
 
-                // No child case
+                // Hoja
                 if (temp == null) {
-                    temp = root;
-                    root = null;
-                } else // One child case
-                    root = temp; // Copy the contents of the non-empty child
+                    temp = raiz;
+                    raiz = null;
+                } else // Un solo hijo
+                    raiz = temp;
             } else {
-                // node with two children: Get the inorder successor (smallest in the right subtree)
-                NodoAVL temp = minValueNode(root.right);
+                // Caso con dos hijos
+                NodoAVL temp = minimo(raiz.derecha);
 
-                // Copy the inorder successor's data to this node
-                root.key = temp.key;
+                // Reemplazando datos
+                raiz.dpi = temp.dpi;
+                raiz.nombre = temp.nombre;
+                raiz.departamento = temp.departamento;
+                raiz.municipio = temp.municipio;
+                raiz.dosis = temp.dosis;
+                raiz.fechaPrimeraVacuna = temp.fechaPrimeraVacuna;
+                raiz.fechaSegundaVacuna = temp.fechaSegundaVacuna;
+                raiz.fechaTerceraVacuna = temp.fechaTerceraVacuna;
+                raiz.lugarVacunacion = temp.lugarVacunacion;
 
-                // Delete the inorder successor
-                root.right = deleteNode(root.right, temp.key);
+                // Eliminar
+                raiz.derecha = eliminarNodo(raiz.derecha, temp.dpi);
             }
         }
 
-        // If the tree had only one node then return
-        if (root == null)
-            return root;
+        // Caso un nodo
+        // Repetir insertar
+        if (raiz == null)
+            return raiz;
 
-        // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
-        root.height = max(height(root.left), height(root.right)) + 1;
+        // Actualizar la altura
+        raiz.altura = max(altura(raiz.izquierda), altura(raiz.derecha)) + 1;
 
-        // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether this node became unbalanced)
-        int balance = getBalance(root);
+        // Obtener factor balance
+        int balance = getFactorBalance(raiz);
 
-        // If this node becomes unbalanced, then there are 4 cases
+        // Casos de desbalance
 
-        // Left Left Case
-        if (balance > 1 && getBalance(root.left) >= 0)
-            return rightRotate(root);
+        // Caso izquierda izquierda
+        if (balance > 1 && getFactorBalance(raiz.izquierda) >= 0)
+            return rotacionDerecha(raiz);
 
-        // Left Right Case
-        if (balance > 1 && getBalance(root.left) < 0) {
-            root.left = leftRotate(root.left);
-            return rightRotate(root);
+        // Caso izquierda derecha
+        if (balance > 1 && getFactorBalance(raiz.izquierda) < 0) {
+            raiz.izquierda = rotacionIzquierda(raiz.izquierda);
+            return rotacionDerecha(raiz);
         }
 
-        // Right Right Case
-        if (balance < -1 && getBalance(root.right) <= 0)
-            return leftRotate(root);
+        // Caso derecha derecha
+        if (balance < -1 && getFactorBalance(raiz.derecha) <= 0)
+            return rotacionIzquierda(raiz);
 
-        // Right Left Case
-        if (balance < -1 && getBalance(root.right) > 0) {
-            root.right = rightRotate(root.right);
-            return leftRotate(root);
+        // Caso Derecha izquierda
+        if (balance < -1 && getFactorBalance(raiz.derecha) > 0) {
+            raiz.derecha = rotacionDerecha(raiz.derecha);
+            return rotacionIzquierda(raiz);
         }
 
-        return root;
+        return raiz;
     }
 
-    // A utility function to print preorder traversal of the tree.
-    // The function also prints height of every NodoAVL
-    void preOrder(NodoAVL NodoAVL) {
-        if (NodoAVL != null) {
-            System.out.print(NodoAVL.key + " ");
-            preOrder(NodoAVL.left);
-            preOrder(NodoAVL.right);
+    public void cargarArbol() {
+        try (Scanner scanner = new Scanner(new File("arbolAVL.txt"))) {
+            while(scanner.hasNext()) {
+                String linea = scanner.nextLine();
+                String[] datos = linea.split("\t");
+
+                // Procesando datos
+                String nombre = datos[0];
+                String dpiPuro = datos[1].replaceAll("[^\\d]", "");
+                long dpi = Long.parseLong(dpiPuro);
+                String departamento = datos[2];
+                String municipio = datos[3];
+                String dosis = datos[4];
+                String fechaPrimeraVacuna = datos[5];
+                String fechaSegundaVacuna = datos[6];
+                String fechaTerceraVacuna = datos[7];
+                String lugarVacunacion = datos[8];
+
+                insertarArbol(dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
+            }
+        } catch(IOException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 
-//    public static void main(String[] args) {
-//        AVLTree tree = new AVLTree();
-//
-//        /* Constructing tree given in the above figure */
-//        root = tree.insert(tree.root, 10);
-//        tree.root = tree.insert(tree.root, 20);
-//        tree.root = tree.insert(tree.root, 30);
-//        tree.root = tree.insert(tree.root, 40);
-//        tree.root = tree.insert(tree.root, 50);
-//        tree.root = tree.insert(tree.root, 25);
-//
-//        /* The constructed AVL Tree would be
-//            30
-//           /  \
-//         20   40
-//        /  \     \
-//       10  25    50
-//        */
-//        System.out.println("Preorder traversal of constructed tree is : ");
-//        tree.preOrder(tree.root);
-//
-//        tree.root = tree.deleteNode(tree.root, 10);
-//
-//        /* The AVL Tree after deletion of 10
-//            30
-//           /  \
-//         20   40
-//          \     \
-//          25    50
-//        */
-//        System.out.println("\nPreorder traversal after deletion of 10 :");
-//        tree.preOrder(tree.root);
-//    }
+    public void preorderArbol() {
+        recorridoPreorderArbol(raiz);
+    }
+
+    public void recorridoPreorderArbol(NodoAVL raiz) {
+        if (raiz != null) {
+            String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion;
+            System.out.println(registro);
+            recorridoPreorderArbol(raiz.izquierda);
+            recorridoPreorderArbol(raiz.derecha);
+        }
+    }
 }
 

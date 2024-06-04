@@ -17,10 +17,8 @@ public class App {
     private JButton regresarABB;
     private JButton cargarArchivoABB;
     private JButton encriptarButton;
-    private JPanel panelAVL;
+    private JPanel panelMenuAVL;
     private JButton regresarAVL;
-    private JButton cargarArchivoButton;
-    private JButton button5;
     private JTextField nodoBuscadoABB;
     private JButton buscarButtonABB;
     private JButton agregarABBButton;
@@ -55,6 +53,41 @@ public class App {
     private JTextField fechaPrimeraNuevaABB;
     private JTextField dpiAntiguoABB;
     private JButton descomprimirABBButton;
+    private JPanel panelAgregarPersonaAVL;
+    private JPanel panelActualizarPersonaAVL;
+    private JPanel panelAVL;
+    private JButton regresarButtonAVL;
+    private JTextField personaBuscadaAVL;
+    private JButton buscarButtonAVL;
+    private JButton agregarPersonaButtonAVL;
+    private JButton actualizarButtonAVL;
+    private JButton eliminarButtonAVL;
+    private JButton cargarArchivoButtonAVL;
+    private JButton preorderButtonAVL;
+    private JButton postorderButtonAVL;
+    private JButton inorderButtonAVL;
+    private JButton verArbolButtonAVL;
+    private JTable table1;
+    private JButton encriptarButtonAVL;
+    private JButton desencriptarButtonAVL;
+    private JButton descomprimirButtonAVL;
+    private JButton comprimirButtonAVL;
+    private JButton regresarAgregarButtonAVL;
+    private JButton agregarNuevaPersonaButtonAVL;
+    private JTextField dpiAVL;
+    private JTextField nombreAVL;
+    private JButton regresarActualizarButtonAVL;
+    private JTextField dpiAntiguoAVL;
+    private JTextField dpiNuevoAVL;
+    private JTextField nombreNuevoAVL;
+    private JTextField departamentoNuevoAVL;
+    private JTextField municipioNuevoAVL;
+    private JTextField dosisNuevaAVL;
+    private JTextField primeraNuevaAVL;
+    private JTextField segundaNuevaAVL;
+    private JTextField terceraNuevaAVL;
+    private JTextField lugarNuevoAVL;
+    private JButton actualizarPersonaButtonAVL;
 
     // Modelo
     private File ArchivoSeleccionado;
@@ -83,18 +116,7 @@ public class App {
                 irA(panelMenuPrincipal);
             }
         });
-        regresarAVL.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                irA(panelMenuPrincipal);
-            }
-        });
-        AVLButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                irA(panelAVL);
-            }
-        });
+
         cargarArchivoABB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -312,6 +334,42 @@ public class App {
             @Override
             public void actionPerformed(ActionEvent e) {
                 arbolBinario.descomprimir();
+            }
+        });
+        AVLButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelMenuAVL);
+            }
+        });
+        regresarButtonAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelMenuPrincipal);
+            }
+        });
+        agregarPersonaButtonAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelAgregarPersonaAVL);
+            }
+        });
+        actualizarButtonAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelActualizarPersonaAVL);
+            }
+        });
+        regresarAgregarButtonAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelMenuAVL);
+            }
+        });
+        regresarActualizarButtonAVL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                irA(panelMenuAVL);
             }
         });
     }
