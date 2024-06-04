@@ -1087,7 +1087,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="ec83" class="javax.swing.JTable" binding="table1" default-binding="true">
+                      <component id="ec83" class="javax.swing.JTable" binding="tablaAVL" custom-create="true">
                         <constraints/>
                         <properties/>
                       </component>

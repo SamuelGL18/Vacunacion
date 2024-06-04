@@ -356,10 +356,10 @@ public class ArbolBB {
     }
 
     public void comprimir() {
-        comprimidor.comprimirArchivo("arbolBB.txt");
+        comprimidor.comprimirArchivo("arbolBB.txt", "arbolBB_comprimido.txt");
     }
 
     public void descomprimir() {
-        comprimidor.descomprimirArchivo("arbolBB_comprimido.txt");
+        comprimidor.descomprimirArchivo("arbolBB_comprimido.txt", "arbolBB_descomprimido.txt");
     }
 }

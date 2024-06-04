@@ -6,7 +6,7 @@ public class Comprimidor {
 
     Map<String, String> diccionario;
 
-    public void comprimirArchivo(String rutaArchivo) {
+    public void comprimirArchivo(String rutaArchivo, String nombreArchivoComprimido) {
         // Obtener el archivo original
         List<String> contenidoOriginal = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -28,7 +28,7 @@ public class Comprimidor {
         List<String> contenidoComprimido = comprimirDatos(contenidoOriginal, diccionario);
 
         // Crear archivo
-        crearArchivoComprimido(contenidoComprimido, diccionario, "arbolBB_comprimido.txt");
+        crearArchivoComprimido(contenidoComprimido, nombreArchivoComprimido);
     }
 
     private Map<String, Integer> obtenerFrecuencias(List<String> archivoOriginal) {
@@ -72,8 +72,8 @@ public class Comprimidor {
         return contenidoComprimido;
     }
 
-    private void crearArchivoComprimido(List<String> contenidoComprimido, Map<String, String> diccionario, String rutaArchivoComprimido) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivoComprimido))) {
+    private void crearArchivoComprimido(List<String> contenidoComprimido, String nombreArchivoComprimido) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nombreArchivoComprimido))) {
             for (String line : contenidoComprimido) {
                 bw.write(line);
                 bw.newLine();
@@ -83,7 +83,7 @@ public class Comprimidor {
         }
     }
 
-    public void descomprimirArchivo(String rutaArchivoComprimido) {
+    public void descomprimirArchivo(String rutaArchivoComprimido, String nombreArchivoDescomprimido) {
         // Obteniendo el contenido comprimido
         List<String> contenidoComprimido = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivoComprimido))) {
@@ -99,7 +99,7 @@ public class Comprimidor {
         List<String> contenidoDescomprimido =  descomprimirDatos(contenidoComprimido);
 
         // Genera el archivo descomprimido
-        crearArchivoDescomprimido(contenidoDescomprimido, "arbolBB_descomprimido.txt");
+        crearArchivoDescomprimido(contenidoDescomprimido, nombreArchivoDescomprimido);
     }
 
     private List<String> descomprimirDatos(List<String> contenidoComprimido) {
@@ -114,8 +114,8 @@ public class Comprimidor {
         return contenidoDescomprimido;
     }
 
-    private void crearArchivoDescomprimido(List<String> contenidoDescomprimido, String rutaArchivoDescomprimido) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivoDescomprimido))) {
+    private void crearArchivoDescomprimido(List<String> contenidoDescomprimido, String nombreArchivoDescomprimido) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nombreArchivoDescomprimido))) {
             for (String linea : contenidoDescomprimido) {
                 bw.write(linea);
                 bw.newLine();
