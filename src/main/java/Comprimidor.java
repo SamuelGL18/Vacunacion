@@ -6,7 +6,7 @@ public class Comprimidor {
 
     Map<String, String> diccionario;
 
-    private void comprimir(String rutaArchivo) {
+    public void comprimirArchivo(String rutaArchivo) {
         // Obtener el archivo original
         List<String> contenidoOriginal = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -83,7 +83,7 @@ public class Comprimidor {
         }
     }
 
-    private void descomprimir(String rutaArchivoComprimido) {
+    public void descomprimirArchivo(String rutaArchivoComprimido) {
         // Obteniendo el contenido comprimido
         List<String> contenidoComprimido = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivoComprimido))) {

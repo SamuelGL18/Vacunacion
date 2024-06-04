@@ -132,7 +132,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="1cb3d" binding="panelABB" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="1cb3d" binding="panelABB" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card1"/>
@@ -198,9 +198,9 @@
                   <text value="Buscar persona"/>
                 </properties>
               </component>
-              <component id="ef1d8" class="javax.swing.JButton" binding="comprimirButton" default-binding="true">
+              <component id="ef1d8" class="javax.swing.JButton" binding="comprimirABBButton">
                 <constraints>
-                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -303,7 +303,7 @@
               </component>
               <component id="17555" class="javax.swing.JButton" binding="encriptarButton" default-binding="true">
                 <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -312,7 +312,7 @@
               </component>
               <component id="6b982" class="javax.swing.JButton" binding="desencriptarButton" default-binding="true">
                 <constraints>
-                  <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="HoloLens MDL2 Assets" size="18" style="0"/>
@@ -326,9 +326,18 @@
               </vspacer>
               <vspacer id="d87f7">
                 <constraints>
-                  <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
+              <component id="be684" class="javax.swing.JButton" binding="descomprimirABBButton">
+                <constraints>
+                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="HoloLens MDL2 Assets" size="18" style="0"/>
+                  <text value="Descomprimir"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="fc0d2" binding="panelAgregarPersonaABB" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

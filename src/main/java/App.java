@@ -24,7 +24,7 @@ public class App {
     private JTextField nodoBuscadoABB;
     private JButton buscarButtonABB;
     private JButton agregarABBButton;
-    private JButton comprimirButton;
+    private JButton comprimirABBButton;
     private JTable tablaNodosABB;
     private JButton recorridoPreordenButton;
     private JButton agregarPersonaButtonABB;
@@ -54,6 +54,7 @@ public class App {
     private JTextField fechaSegundaNuevaABB;
     private JTextField fechaPrimeraNuevaABB;
     private JTextField dpiAntiguoABB;
+    private JButton descomprimirABBButton;
 
     // Modelo
     private File ArchivoSeleccionado;
@@ -299,6 +300,18 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 arbolBinario.desencriptar();
                 actualizarTabla();
+            }
+        });
+        comprimirABBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.comprimir();
+            }
+        });
+        descomprimirABBButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.descomprimir();
             }
         });
     }

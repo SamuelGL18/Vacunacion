@@ -74,7 +74,6 @@ public class ArbolBB {
     Nodo insertarNodo(Nodo raiz, long dpi, String nombre) {
         if (raiz == null) {
             raiz = new Nodo(dpi, nombre);
-            System.out.println(raiz.nombre);
             return raiz;
         }
         if (dpi < raiz.dpi) {
@@ -354,5 +353,13 @@ public class ArbolBB {
             recorridoPreorderDesencriptacion(raiz.izquierda);
             recorridoPreorderDesencriptacion(raiz.derecha);
         }
+    }
+
+    public void comprimir() {
+        comprimidor.comprimirArchivo("arbolBB.txt");
+    }
+
+    public void descomprimir() {
+        comprimidor.descomprimirArchivo("arbolBB_comprimido.txt");
     }
 }
