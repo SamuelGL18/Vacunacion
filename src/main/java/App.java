@@ -334,8 +334,11 @@ public class App {
         desencriptarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                arbolBinario.desencriptar();
-                actualizarTablaABB();
+                int opcion = JOptionPane.showConfirmDialog(null, "Si los datos no estan encriptados y se desencriptan los datos seran alterados. Se debe desencriptar unicamento cuando los datos estan encriptados. Desea continuar?", "Desencriptar", JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    arbolBinario.desencriptar();
+                    actualizarTablaABB();
+                }
             }
         });
 
@@ -587,8 +590,12 @@ public class App {
         desencriptarButtonAVL.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                arbolAVL.desencriptar();
-                actualizarTablaAVL();
+                int opcion = JOptionPane.showConfirmDialog(null, "Si los datos no estan encriptados y se desencriptan los datos seran alterados. Se debe desencriptar unicamento cuando los datos estan encriptados. Desea continuar?", "Desencriptar", JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    arbolAVL.desencriptar();
+                    actualizarTablaAVL();
+                }
+
             }
         });
 
