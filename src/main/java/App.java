@@ -287,6 +287,20 @@ public class App {
                 arbolBinario.inorder();
             }
         });
+        encriptarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.encriptar();
+                actualizarTabla();
+            }
+        });
+        desencriptarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arbolBinario.desencriptar();
+                actualizarTabla();
+            }
+        });
     }
 
     void actualizarTabla() {

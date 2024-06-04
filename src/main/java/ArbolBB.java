@@ -307,4 +307,52 @@ public class ArbolBB {
             System.out.print(registro);
         }
     }
+
+    void encriptar() {
+        recorridoPreorderEncriptacion(raiz);
+        actualizarGUI();
+    }
+
+    void recorridoPreorderEncriptacion(Nodo raiz) {
+        if (raiz != null) {
+            String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion;
+            String registroEncriptado = encriptador.encriptar(registro);
+            String[] datosEncriptados = registroEncriptado.split("\t");
+            raiz.nombre = datosEncriptados[0];
+            raiz.departamento = datosEncriptados[2];
+            raiz.municipio = datosEncriptados[3];
+            raiz.dosis = datosEncriptados[4];
+            raiz.fechaPrimeraVacuna = datosEncriptados[5];
+            raiz.fechaSegundaVacuna = datosEncriptados[6];
+            raiz.fechaTerceraVacuna = datosEncriptados[7];
+            raiz.lugarVacunacion = datosEncriptados[8];
+            recorridoPreorderEncriptacion(raiz.izquierda);
+            recorridoPreorderEncriptacion(raiz.derecha);
+        }
+    }
+
+    void desencriptar() {
+        recorridoPreorderDesencriptacion(raiz);
+        actualizarGUI();
+    }
+
+    void recorridoPreorderDesencriptacion(Nodo raiz) {
+        if (raiz != null) {
+            String registroEncriptado = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaTerceraVacuna + "\t" + raiz.lugarVacunacion;
+            String registroDesencriptado = encriptador.desencriptar(registroEncriptado);
+            String[] datosDesencriptados = registroDesencriptado.split("\t");
+
+            raiz.nombre = datosDesencriptados[0];
+            raiz.departamento = datosDesencriptados[2];
+            raiz.municipio = datosDesencriptados[3];
+            raiz.dosis = datosDesencriptados[4];
+            raiz.fechaPrimeraVacuna = datosDesencriptados[5];
+            raiz.fechaSegundaVacuna = datosDesencriptados[6];
+            raiz.fechaTerceraVacuna = datosDesencriptados[7];
+            raiz.lugarVacunacion = datosDesencriptados[8];
+
+            recorridoPreorderDesencriptacion(raiz.izquierda);
+            recorridoPreorderDesencriptacion(raiz.derecha);
+        }
+    }
 }

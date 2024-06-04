@@ -3,35 +3,89 @@ import java.util.Random;
 
 public class EncriptacionSustitucion {
 
-        private final String ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789áéíóúÁÉÍÓÚ/";
-
         private HashMap<Character, Character> mapa;
 
         public EncriptacionSustitucion() {
             mapa = crearMapa();
         }
 
-        // Crear mapa randomizado
+        // Generar el diccionario
         private HashMap<Character, Character> crearMapa() {
             HashMap<Character, Character> mapa = new HashMap<>();
-            char[] alfabetoRandomizado = ALFABETO.toCharArray();
-            randomizarArray(alfabetoRandomizado);
-
-            for (int i = 0; i < ALFABETO.length(); i++) {
-                mapa.put(ALFABETO.charAt(i), alfabetoRandomizado[i]);
-            }
+            mapa.put('/', 'R');
+            mapa.put('0', 'T');
+            mapa.put('1', 'E');
+            mapa.put('2', 'I');
+            mapa.put('3', 'u');
+            mapa.put('4', 'y');
+            mapa.put('5', 'ú');
+            mapa.put('6', '6');
+            mapa.put('7', 'f');
+            mapa.put('8', 'M');
+            mapa.put('9', 'o');
+            mapa.put('A', 'Z');
+            mapa.put('Á', '1');
+            mapa.put('B', 'b');
+            mapa.put('C', 'r');
+            mapa.put('D', 'q');
+            mapa.put('E', 'C');
+            mapa.put('F', '9');
+            mapa.put('G', 'V');
+            mapa.put('H', 'g');
+            mapa.put('I', 'd');
+            mapa.put('É', 'z');
+            mapa.put('J', 'Y');
+            mapa.put('K', 'w');
+            mapa.put('L', 'c');
+            mapa.put('M', 'S');
+            mapa.put('Í', '5');
+            mapa.put('N', 'P');
+            mapa.put('O', 'O');
+            mapa.put('P', 'U');
+            mapa.put('Q', 'Á');
+            mapa.put('R', '/');
+            mapa.put('S', 'X');
+            mapa.put('Ó', 'h');
+            mapa.put('T', 'J');
+            mapa.put('U', '7');
+            mapa.put('V', '4');
+            mapa.put('W', 'é');
+            mapa.put('X', 'k');
+            mapa.put('Y', 'É');
+            mapa.put('Z', 'L');
+            mapa.put('Ú', 'K');
+            mapa.put('a', 'Q');
+            mapa.put('á', '2');
+            mapa.put('b', 'W');
+            mapa.put('c', 'Í');
+            mapa.put('d', 'i');
+            mapa.put('e', 'm');
+            mapa.put('f', 'l');
+            mapa.put('g', 'F');
+            mapa.put('h', 'n');
+            mapa.put('i', 'H');
+            mapa.put('é', 'Ú');
+            mapa.put('j', 'B');
+            mapa.put('k', 'x');
+            mapa.put('l', 'D');
+            mapa.put('m', 's');
+            mapa.put('í', 'G');
+            mapa.put('n', 'N');
+            mapa.put('o', 't');
+            mapa.put('p', 'ó');
+            mapa.put('q', '3');
+            mapa.put('r', 'v');
+            mapa.put('s', 'e');
+            mapa.put('ó', 'á');
+            mapa.put('t', '8');
+            mapa.put('u', 'í');
+            mapa.put('v', 'a');
+            mapa.put('w', '0');
+            mapa.put('x', 'j');
+            mapa.put('y', 'Ó');
+            mapa.put('z', 'p');
+            mapa.put('ú', 'A');
             return mapa;
-        }
-
-        // Randomiza el mapa
-        private void randomizarArray(char[] array) {
-            Random rand = new Random();
-            for (int i = array.length - 1; i > 0; i--) {
-                int index = rand.nextInt(i + 1);
-                char temp = array[index];
-                array[index] = array[i];
-                array[i] = temp;
-            }
         }
 
         public String encriptar(String textoOriginal) {
