@@ -4,6 +4,7 @@
 Este es el proyecto final del curso de Programación III. Debido a algunos inconvenientes con el tiempo  
 la parte gráfica del programa no pudo ser modulada; todos los paneles, botones, tablas y demás componentes  
 y listeners se encuentran dentro de un solo archivo .form llamado `App.form`. El proyecto fue desarrollado en el IDE Intellij IDEA.
+Es posible que la imagen generada no llege a actualizarse, para asegurar, reinicie la aplicacion y clickee generar arbol.
 
 ## GUI
 ***
