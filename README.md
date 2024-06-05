@@ -6,6 +6,14 @@ la parte gráfica del programa no pudo ser modulada; todos los paneles, botones,
 y listeners se encuentran dentro de un solo archivo .form llamado `App.form`. El proyecto fue desarrollado en el IDE Intellij IDEA.
 Es posible que la imagen generada no llege a actualizarse, para asegurar, reinicie la aplicacion y clickee generar arbol.
 
+> [!NOTE]
+> El programa puede ser probado unicamente en Intellij o descargando y ejecutando el archivo jar. De ocurrir un eror de excepcion, por favor ejecutar en la terminal.
+
+## Descarga
+***
+El programa puede ser descargado en la seccion Releases de este repositorio [Archivo Jar](https://github.com/SamuelGL18/Vacunacion/releases/tag/1.0).  
+
+
 ## GUI
 ***
 
