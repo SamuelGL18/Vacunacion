@@ -70,7 +70,7 @@ public class ArbolBB {
         return raiz;
     }
 
-    // Cargar los datos anteriores
+    // Inserta a tabla, archivo de texto y dot
     Nodo insertarNodo(Nodo raiz, long dpi, String nombre) {
         if (raiz == null) {
             raiz = new Nodo(dpi, nombre);

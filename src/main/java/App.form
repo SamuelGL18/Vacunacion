@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="App">
-  <grid id="27dc6" binding="panelPrincipal" layout-manager="CardLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="panelPrincipal" layout-manager="CardLayout" hgap="0" vgap="0" show="3af6e">
     <constraints>
       <xy x="20" y="20" width="995" height="570"/>
     </constraints>
