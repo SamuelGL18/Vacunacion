@@ -428,7 +428,7 @@ public class App {
                             arbolAVL.insertarGUI(dpi, nombre);
                         }
                     }
-                    actualizarTablaABB();
+                    actualizarTablaAVL();
                 } catch (FileNotFoundException exception) {
                     System.out.println(exception.getMessage());
                 }
