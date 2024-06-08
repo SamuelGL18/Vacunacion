@@ -110,9 +110,9 @@ public class ArbolAVL {
             raiz.lugarVacunacion = lugarVacunacion;
             return raiz;
         }
-        if (dpi < raiz.dpi)
+        if (nombre.compareTo(raiz.nombre) < 0)
             raiz.izquierda = insertar(raiz.izquierda, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
-        else if (dpi > raiz.dpi)
+        else if (nombre.compareTo(raiz.nombre) > 0)
             raiz.derecha = insertar(raiz.derecha, dpi, nombre, departamento, municipio, dosis, fechaPrimeraVacuna, fechaSegundaVacuna, fechaTerceraVacuna, lugarVacunacion);
         else
             return raiz;
@@ -126,21 +126,21 @@ public class ArbolAVL {
         // Casos de desbalance
 
         // Caso izquierda izquierda
-        if (balance > 1 && dpi < raiz.izquierda.dpi)
+        if (balance > 1 && nombre.compareTo(raiz.izquierda.nombre) < 0)
             return rotacionDerecha(raiz);
 
         // Caso derecha derecha
-        if (balance < -1 && dpi > raiz.derecha.dpi)
+        if (balance < -1 && nombre.compareTo(raiz.derecha.nombre) > 0)
             return rotacionIzquierda(raiz);
 
         // Caso izquierda derecha
-        if (balance > 1 && dpi > raiz.izquierda.dpi) {
+        if (balance > 1 && nombre.compareTo(raiz.izquierda.nombre) > 0) {
             raiz.izquierda = rotacionIzquierda(raiz.izquierda);
             return rotacionDerecha(raiz);
         }
 
         // Caso derecha izquierda
-        if (balance < -1 && dpi < raiz.derecha.dpi) {
+        if (balance < -1 && nombre.compareTo(raiz.derecha.nombre) < 0) {
             raiz.derecha = rotacionDerecha(raiz.derecha);
             return rotacionIzquierda(raiz);
         }
@@ -159,21 +159,21 @@ public class ArbolAVL {
         return actual;
     }
 
-    public void eliminar(long dpi) {
-        raiz = eliminarNodo(raiz, dpi);
+    public void eliminar(String nombre) {
+        raiz = eliminarNodo(raiz, nombre);
         actualizarGUI();
     }
 
-    NodoAVL eliminarNodo(NodoAVL raiz, long dpi) {
+    NodoAVL eliminarNodo(NodoAVL raiz, String nombre) {
         // Eliminacion normal
         if (raiz == null)
             return raiz;
 
-        if (dpi < raiz.dpi)
-            raiz.izquierda = eliminarNodo(raiz.izquierda, dpi);
+        if (nombre.compareTo(raiz.nombre) < 0)
+            raiz.izquierda = eliminarNodo(raiz.izquierda, nombre);
 
-        else if (dpi > raiz.dpi)
-            raiz.derecha = eliminarNodo(raiz.derecha, dpi);
+        else if (nombre.compareTo(raiz.nombre) > 0)
+            raiz.derecha = eliminarNodo(raiz.derecha, nombre);
 
         else {
             // Hoja o solo un hijo
@@ -206,7 +206,7 @@ public class ArbolAVL {
                 raiz.lugarVacunacion = temp.lugarVacunacion;
 
                 // Eliminar
-                raiz.derecha = eliminarNodo(raiz.derecha, temp.dpi);
+                raiz.derecha = eliminarNodo(raiz.derecha, temp.nombre);
             }
         }
 
@@ -296,9 +296,9 @@ public class ArbolAVL {
             raiz = new NodoAVL(dpi, nombre);
             return raiz;
         }
-        if (dpi < raiz.dpi) {
+        if (nombre.compareTo(raiz.nombre) < 0) {
             raiz.izquierda = insertarNodo(raiz.izquierda, dpi, nombre);
-        } else if (dpi > raiz.dpi) {
+        } else if (nombre.compareTo(raiz.nombre) > 0) {
             raiz.derecha = insertarNodo(raiz.derecha, dpi, nombre);
         }
 
@@ -311,21 +311,21 @@ public class ArbolAVL {
         // Casos de desbalance
 
         // Caso izquierda izquierda
-        if (balance > 1 && dpi < raiz.izquierda.dpi)
+        if (balance > 1 && nombre.compareTo(raiz.izquierda.nombre) < 0)
             return rotacionDerecha(raiz);
 
         // Caso derecha derecha
-        if (balance < -1 && dpi > raiz.derecha.dpi)
+        if (balance < -1 && nombre.compareTo(raiz.derecha.nombre) > 0)
             return rotacionIzquierda(raiz);
 
         // Caso izquierda derecha
-        if (balance > 1 && dpi > raiz.izquierda.dpi) {
+        if (balance > 1 && nombre.compareTo(raiz.izquierda.nombre) > 0) {
             raiz.izquierda = rotacionIzquierda(raiz.izquierda);
             return rotacionDerecha(raiz);
         }
 
         // Caso derecha izquierda
-        if (balance < -1 && dpi < raiz.derecha.dpi) {
+        if (balance < -1 && nombre.compareTo(raiz.derecha.nombre) < 0) {
             raiz.derecha = rotacionDerecha(raiz.derecha);
             return rotacionIzquierda(raiz);
         }
@@ -364,17 +364,17 @@ public class ArbolAVL {
                 String registro = raiz.nombre + "\t" + raiz.dpi + "\t" + raiz.departamento + "\t" + raiz.municipio + "\t" + raiz.dosis + "\t" + raiz.fechaPrimeraVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.fechaSegundaVacuna + "\t" + raiz.lugarVacunacion + "\n";
                 arbolTxt.append(registro);
                 String dpiConvertido = "" + raiz.dpi;
-                declaracionDot.append("\t" + dpiConvertido + " [label=\"" + "Nombre: " + raiz.nombre + "\n" + "DPI: " + raiz.dpi + "\n" + "Departamento: " + raiz.departamento + "\n" + "Municipio: " + raiz.municipio + "\n" + "Dosis: " + raiz.dosis + "\n" + "Primera vacuna" + raiz.fechaPrimeraVacuna + "\n" + "Segunda vacuna" + raiz.fechaSegundaVacuna + "\n" + "Tercera vacuna: " + raiz.fechaTerceraVacuna + "\n" + "Lugar vacunacion: " + raiz.lugarVacunacion + "\"]\n");
+                declaracionDot.append("\t" + raiz.nombre + " [label=\"" + "Nombre: " + raiz.nombre + "\n" + "DPI: " + raiz.dpi + "\n" + "Departamento: " + raiz.departamento + "\n" + "Municipio: " + raiz.municipio + "\n" + "Dosis: " + raiz.dosis + "\n" + "Primera vacuna" + raiz.fechaPrimeraVacuna + "\n" + "Segunda vacuna" + raiz.fechaSegundaVacuna + "\n" + "Tercera vacuna: " + raiz.fechaTerceraVacuna + "\n" + "Lugar vacunacion: " + raiz.lugarVacunacion + "\"]\n");
 
                 // Estableciendo relaciones en el documento dot
                 // Manejando los distintos casos
                 if (raiz.derecha != null && raiz.izquierda != null) {
-                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.izquierda.dpi + "\n");
-                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.derecha.dpi + "\n");
+                    relacionesDot.append("\t" + raiz.nombre + " -> " + raiz.izquierda.nombre + "\n");
+                    relacionesDot.append("\t" + raiz.nombre + " -> " + raiz.derecha.nombre + "\n");
                 } else if(raiz.derecha == null && raiz.izquierda != null) {
-                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.izquierda.dpi + "\n");
+                    relacionesDot.append("\t" + raiz.nombre + " -> " + raiz.izquierda.nombre + "\n");
                 } else if(raiz.izquierda == null && raiz.derecha != null) {
-                    relacionesDot.append("\t" + dpiConvertido + " -> " + raiz.derecha.dpi + "\n");
+                    relacionesDot.append("\t" + raiz.nombre + " -> " + raiz.derecha.nombre + "\n");
                 }
                 recorridoPreorderGUI(raiz.izquierda, arbolTxt, declaracionDot, relacionesDot);
                 recorridoPreorderGUI(raiz.derecha, arbolTxt, declaracionDot, relacionesDot);

@@ -569,9 +569,9 @@ public class App {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tablaAVL.getSelectedRow();
                 if (filaSeleccionada != -1) {
-                    String dpiBruto = (String) tablaAVL.getValueAt(filaSeleccionada, 0);
-                    long dpi = Long.parseLong(dpiBruto);
-                    arbolAVL.eliminar(dpi);
+                    String nombre = (String) tablaAVL.getValueAt(filaSeleccionada, 1);
+
+                    arbolAVL.eliminar(nombre);
                     actualizarTablaAVL();
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una fila!", "Error", JOptionPane.ERROR_MESSAGE);
